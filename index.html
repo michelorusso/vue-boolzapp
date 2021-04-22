@@ -12,6 +12,7 @@
 
     <!-- FONTAWESOME -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
@@ -21,11 +22,117 @@
 
 </head>
 <body>
-
+    
     <div id="root">
+        <!-- BACKGROUND PAGE -->
+        <div class="background-page">
+            <span class="bg-green"></span>
 
+            <!-- Container Input  -->
+            <div class="container">
 
+                <!-- Box-message -->
+                <section class="box-messages">
+
+                    <!-- Contacts -->
+                    <div class="contacts">
+                        
+                        <!-- info-user -->
+                        <div class="info-user">
+
+                            <div class="images-user">
+                                <img src="img/avatar_1.jpg" alt="avatar1">
+                                <span>Nome Utente</span>
+                            </div>
+
+                            <div class="icons-user">
+                                <i class="fas fa-circle-notch"></i>
+                                <i class="fas fa-comment-alt"></i>
+                                <i class="fas fa-ellipsis-v"></i>
+                            </div>
+                        </div>
+                        <!-- end info-user -->
+
+                        <!-- notifications -->
+                        <div class="notifications">
+
+                            <span class="bell-icon">
+                                <i class="fas fa-bell-slash"></i>
+                            </span>
+
+                            <div>
+                                <h5>Ricevi notifiche di nuovi messaggi</h5>
+                                <h6><a href="#">Attiva notifiche desktop</a></h6>
+                            </div>
+                              
+                        </div>
+                        <!-- notifications -->
+
+                        <!-- filter -->
+                        <div class="filter">
+                            <input type="text" placeholder=" &#xF002;     Cerca o inizia una nuova chat" style="font-family:Arial, FontAwesome">
+                        </div>
+                        <!-- end filter -->
+
+                        <!-- contact -->
+                        <div class="contact">
+
+                            <ul class="menu-contact">
+
+                                <!-- single-contact -->
+                                <li v-for="(info, index) in contacts" class="single-contact">
+                                    
+                                    <div class="images-user">
+                                        <img :src="info.avatar" alt="avatar1">
+                                        <span>{{ info.name }}</span>
+                                    </div>
+
+                                </li>
+                                <!-- end single-contact -->
+
+                            </ul>
+                        </div>
+                        <!-- end contact -->
+                        
+                    </div>
+                    <!-- End Contacts -->
+    
+                    <!-- Messages -->
+                    <div class="messages">
+                        
+                        <!-- info-user -->
+                        <div class="info-user">
+
+                            <div class="images-user">
+                                <img src="img/avatar_1.jpg" alt="avatar1">
+
+                                <div>
+                                    <span>Nome Utente</span>
+                                    <div class="last-access">Ultimo accesso oggi alle</div>
+                                </div>
+                                
+                            </div>
+
+                            <div class="icons-user">
+                                <i class="fas fa-search"></i>
+                                <i class="fas fa-paperclip"></i>
+                                <i class="fas fa-ellipsis-v"></i>
+                            </div>
+                        </div>
+                        <!-- end info-user -->
+
+                    </div>
+
+                </section>
+                <!-- End Box-message -->
+
+            </div>
+            <!-- End Container Input  -->
+                     
+        </div>
+        <!-- END BACKGROUND PAGE -->
     </div>
+    
     
         <!-- DAY.JS -->
         <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>

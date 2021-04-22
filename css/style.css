@@ -4,3 +4,155 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+/* COMMON */
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+img {
+    width: 100%;
+    border-radius: 50%;
+}
+
+/* BACKGROUND PAGE */
+.background-page {
+    background-image: linear-gradient(180deg, #dddbd1, #d1dadb);
+    height: 100vh;
+    position: relative;
+}
+
+.bg-green {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100px;
+    width: 100%;
+    background-color: #009587;
+}
+
+/* Container Input  */
+.container {
+    width: 80%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    height: calc( 100vh - 5% );
+    background-color: white;
+}
+
+/* Box Message */
+.box-messages {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+/* Contacts & Messages */
+
+/* Contacts */
+.contacts {
+    min-width: 35%;
+    height: 100%;
+    border-right: 1px solid lightgray;
+}
+
+/* info-user */
+.info-user {
+    background-color: #eaeaea;
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+} 
+
+.images-user {
+    display: flex;
+    align-items: center;
+}
+
+.images-user img {
+    width: 45px;
+}
+
+.images-user span {
+    font-size: 15px;
+    font-weight: 500;
+    padding-left: 5px;
+}
+
+.icons-user {
+    padding-right: 8px;
+}
+
+.icons-user i {
+    font-size: 18px;
+    color: #b1b1b1;
+    padding: 0 5px;
+    cursor: pointer;
+}
+
+/* notifications */
+.notifications {
+    background-color: #8edafb; 
+    padding: 18px 15px;
+    display: flex;
+}
+
+.bell-icon {
+    padding: 8px;
+    background-color: white;
+    border-radius: 50%;
+    color: #8edafb;
+}
+
+.notifications h5,
+.notifications h6 {
+    font-weight: 500;
+    padding-left: 10px;
+}
+
+h6 a {
+    color: #537b8c;
+}
+
+/* filter */
+.filter {
+    background-color: #f5f5f5;
+    padding: 10px;
+}
+
+.filter input {
+    width: 100%;
+    border: none;
+    padding: 5px;
+}
+
+.filter input:focus {
+    outline: none;
+}
+
+/* contact */
+.contact .menu-contact {
+    list-style-type: none;
+}
+
+.single-contact {
+    padding: 5px 10px;
+}
+/* Messages */
+.messages {
+    min-width: 65%;
+    height: 100%;
+    
+    /* TEST */
+    background-color: #944646;
+}
+
+.images-user .last-access {
+    font-size: 12px;
+    color: #b1b1b1;
+    font-weight: 500;
+    padding-left: 5px;
+}
