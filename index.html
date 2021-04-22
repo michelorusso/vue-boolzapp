@@ -126,9 +126,11 @@
 
                             <ul class="menu">
 
-                                <li class="sent" v-for="(mex, index) in contacts">
-                                    {{ mex.messages }}
-                                    <span class="time-text">{{ mex.messages }}</span>
+                                <li
+                                 v-for="(mex, index) in contacts[3].messages" 
+                                 :class="{ 'sent': mex.status == 'sent' , 'received': mex.status == 'received'}">
+                                    {{ mex.text }}
+                                    <span class="time-text">{{ mex.date }}</span>
                                 </li>
 
 
