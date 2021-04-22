@@ -129,25 +129,37 @@ h6 a {
     padding: 5px;
 }
 
-.filter input:focus {
+.filter input:focus,
+.input-text input:focus {
     outline: none;
 }
 
 /* contact */
+.contact {
+    height: calc( 100% - 171px );
+    overflow-y: auto;
+}
+
 .contact .menu-contact {
     list-style-type: none;
 }
 
+.menu-contact .sing-name-contact {
+    padding-bottom: 15px;
+    font-size: 13px;
+    padding-left: 15px; 
+}
+
 .single-contact {
     padding: 5px 10px;
+    border-bottom: 1px solid #f5f5f5;
+    cursor: pointer;
 }
+
 /* Messages */
 .messages {
     min-width: 65%;
     height: 100%;
-    
-    /* TEST */
-    background-color: #944646;
 }
 
 .images-user .last-access {
@@ -155,4 +167,64 @@ h6 a {
     color: #b1b1b1;
     font-weight: 500;
     padding-left: 5px;
+}
+
+/* main-message */
+.main-message {
+    height: calc( 100% - 105px );
+    overflow-y: auto;
+    background-image: url(../img/mine.jpg);
+    padding: 30px 60px;
+}
+
+/* input-text */
+.input-text {
+    background-color: #f5f5f5;
+    padding: 8px 10px;
+    text-align: center;
+}
+
+.input-text input {
+    padding: 10px;
+    font-size: 12px;
+    border: none;
+    width: 80%;
+}
+
+.input-text i {
+    padding: 0 20px;
+    color: #b1b1b1;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.main-message .menu {
+    list-style-type: none;
+}
+
+.sent, 
+.received {
+    padding: 15px 10px;
+    font-size: 13px;
+    font-weight: 500;
+    border-radius: 10px;
+    position: relative;
+    width: 250px;
+    display: block;
+}
+
+.sent {
+    background-color: white;
+}
+
+.received {
+    background-color: #d5f9ba;
+}
+
+.time-text {
+    position: absolute;
+    bottom: 2px;
+    right: 5px;
+    font-size: 10px;
+    color: rgb(173, 170, 170);
 }
