@@ -80,7 +80,11 @@
                             <ul class="menu-contact">
 
                                 <!-- single-contact -->
-                                <li v-for="(info, index) in contacts" class="single-contact">
+                                <li 
+                                v-for="(info, index) in contacts" 
+                                class="single-contact "
+                                :class="info.chatActive"
+                                @click="showChat(index)">
                                     
                                     <div class="images-user">
                                         <img :src="info.avatar" alt="avatar1">
@@ -104,11 +108,11 @@
                         <div class="info-user">
 
                             <div class="images-user">
-                                <img src="img/avatar_1.jpg" alt="avatar1">
+                                <img :src="`${contacts[showTextContact].avatar}`" alt="avatar1">
 
                                 <div>
-                                    <span>Nome Utente</span>
-                                    <div class="last-access">Ultimo accesso oggi alle</div>
+                                    <span>{{ contacts[showTextContact].name }}</span>
+                                    <div class="last-access">Ultimo accesso oggi alle {{ contacts[showTextContact].time }}</div>
                                 </div>
                                 
                             </div>
@@ -127,7 +131,7 @@
                             <ul class="menu">
 
                                 <li
-                                 v-for="(mex, index) in contacts[3].messages" 
+                                 v-for="(mex, index) in contacts[showTextContact].messages" 
                                  :class="{ 'sent': mex.status == 'sent' , 'received': mex.status == 'received'}">
                                     {{ mex.text }}
                                     <span class="time-text">{{ mex.date }}</span>

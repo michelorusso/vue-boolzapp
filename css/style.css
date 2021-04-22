@@ -214,11 +214,11 @@ h6 a {
     margin: 10px 0;
 }
 
-.sent {
+.received {
     background-color: white;
 }
 
-.received {
+.sent {
     left: calc( 100% - 250px );
     background-color: #d5f9ba;
 }
@@ -229,4 +229,8 @@ h6 a {
     right: 5px;
     font-size: 10px;
     color: rgb(173, 170, 170);
+}
+
+.courentchat {
+    background-color: #e9ebea;
 }
