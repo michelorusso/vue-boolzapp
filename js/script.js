@@ -24,6 +24,7 @@ var app = new Vue(
     data: {  
 		showTextContact: 0,
 		newMessage: '',
+		contactFilter: '',
 		contacts: [
 			{
 			name: 'Clara',
@@ -136,9 +137,18 @@ var app = new Vue(
 					text: 'okay',
 					status: 'received'
 				})
-			}, 3000)
-		}	
-		
+			}, 3000);
+		},	
+		filterContact() {
+			this.contacts.forEach((element) => {
+				// console.log(element.visible);
+				if( element.name.toLowerCase().includes(this.contactFilter.toLowerCase()) ) {
+					element.visible = true;
+				} else {
+					element.visible = false;
+				}
+			});
+		}
 	}
 
 });

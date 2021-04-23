@@ -70,7 +70,10 @@
                         <!-- filter -->
                         <div class="filter">
                             <label for="filt-text"><i class="fas fa-search"></i></label>
-                            <input id="filt-text" type="text" placeholder="Cerca o inizia una nuova chat">
+                            <input id="filt-text" type="text"
+                             placeholder="Cerca o inizia una nuova chat"
+                             v-model="contactFilter"
+                             @keyup="filterContact">
                         </div>
                         <!-- end filter -->
 
@@ -82,6 +85,7 @@
                                 <!-- single-contact -->
                                 <li 
                                 v-for="(info, index) in contacts" 
+                                v-if="info.visible"
                                 class="single-contact "
                                 :class="{ 'courentchat': index == showTextContact}"
                                 @click="showChat(index)">
