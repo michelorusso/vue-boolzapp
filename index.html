@@ -12,7 +12,6 @@
 
     <!-- FONTAWESOME -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
@@ -70,7 +69,8 @@
 
                         <!-- filter -->
                         <div class="filter">
-                            <input type="text" placeholder=" &#xF002;     Cerca o inizia una nuova chat" style="font-family:Arial, FontAwesome">
+                            <label for="filt-text"><i class="fas fa-search"></i></label>
+                            <input id="filt-text" type="text" placeholder="Cerca o inizia una nuova chat">
                         </div>
                         <!-- end filter -->
 
@@ -83,11 +83,11 @@
                                 <li 
                                 v-for="(info, index) in contacts" 
                                 class="single-contact "
-                                :class="info.chatActive"
+                                :class="{ 'courentchat': index == showTextContact}"
                                 @click="showChat(index)">
                                     
                                     <div class="images-user">
-                                        <img :src="info.avatar" alt="avatar1">
+                                        <img :src="info.avatar" :alt="info.name">
                                         <span class="sing-name-contact">{{ info.name }}</span>
                                     </div>
 
@@ -108,7 +108,7 @@
                         <div class="info-user">
 
                             <div class="images-user">
-                                <img :src="`${contacts[showTextContact].avatar}`" alt="avatar1">
+                                <img :src="`${contacts[showTextContact].avatar}`" :alt="contacts[showTextContact].name">
 
                                 <div>
                                     <span>{{ contacts[showTextContact].name }}</span>
@@ -132,21 +132,23 @@
 
                                 <li
                                  v-for="(mex, index) in contacts[showTextContact].messages" 
-                                 :class="{ 'sent': mex.status == 'sent' , 'received': mex.status == 'received'}">
+                                 :class="mex.status">
                                     {{ mex.text }}
                                     <span class="time-text">{{ mex.date }}</span>
                                 </li>
 
-
                             </ul>
-
+                            
                         </div>
                         <!-- end main-message -->
 
                         <!-- input-text -->
                         <div class="input-text">
+                             
                             <i class="far fa-smile"></i>
-                            <input type="text" placeholder="Scrivi un messaggio">
+                            <input type="text" placeholder="Scrivi un messaggio"
+                             v-model="newMessage"
+                             @keyup.enter="addNewMessages">
                             <i class="fas fa-microphone"></i>
                         </div>
                         <!-- end input-text -->

@@ -7,17 +7,28 @@
 // Visualizzazione dinamica dei messaggi: tramite la direttiva v-for, 
 // visualizzare tutti i messaggi relativi al contatto attivo all’interno del pannello della conversazione
 // Click sul contatto mostra la conversazione del contatto cliccato
+// Milestone 3
+// Aggiunta di un messaggio:
+// l’utente scrive un testo nella parte bassa e digitando “enter” il testo viene aggiunto al thread sopra, come messaggio verde
+// Risposta dall’interlocutore: 
+// ad ogni inserimento di un messaggio, l’utente riceverà un “ok” come risposta, che apparirà dopo 1 secondo.
+// Milestone 4
+// Ricerca utenti: 
+// scrivendo qualcosa nell’input a sinistra, vengono visualizzati solo i contatti il cui nome contiene le lettere inserite (es, Marco, Matteo Martina -> Scrivo “mar” rimangono solo Marco e Martina)
+// Milestone 5 - opzionale
+// Cancella messaggio: cliccando sul messaggio appare un menu a tendina che permette di cancellare il messaggio selezionato
+// Visualizzazione ora e ultimo messaggio inviato/ricevuto nella lista dei contatti 
 var app = new Vue(
     {
     el: '#root',
     data: {  
 		showTextContact: 0,
+		newMessage: '',
 		contacts: [
 			{
 			name: 'Clara',
 			avatar: 'img/avatar_io.jpg',
 			visible: true,
-			chatActive: 'courentchat',
 			time: '09:37',
 			messages: [
 				{
@@ -40,8 +51,7 @@ var app = new Vue(
 		{
 			name: 'Paolo',
 			avatar: 'img/avatar_8.jpg',
-			visible: false,
-			chatActive: '',
+			visible: true,
 			time: '19:47',
 			messages: [
 				{
@@ -64,8 +74,7 @@ var app = new Vue(
 		{
 			name: 'Lele',
 			avatar: 'img/avatar_3.jpg',
-			visible: false,
-			chatActive: '',
+			visible: true,
 			time: '15:18',
 			messages: [
 				{
@@ -88,8 +97,7 @@ var app = new Vue(
 		{
 			name: 'Luisa',
 			avatar: 'img/avatar_6.jpg',
-			visible: false,
-			chatActive: '',
+			visible: true,
 			time: '13:32',
 			messages: [
 				{
@@ -109,7 +117,26 @@ var app = new Vue(
     methods: {
 		showChat(index) {
 			this.showTextContact = index;
-			this.contacts.forEach((element, i) => (i != index) ? element.chatActive = "" : element.chatActive = "courentchat");
+		},
+		addNewMessages() {
+			// cliccando il tasto enter se l'input di newMessage è maggiore di 0 allora pusho un nuovo messaggio con status send nell'array messages
+			// resetto l'input newMEssage in modo che dopo l'invio torni ad essere vuota
+			// una voltqa inviato il messaggio parte un SetTimeOut che farà partire un nuovo messaggio con status recivied 
+			if( this.newMessage.length > 0) {
+				this.contacts[this.showTextContact].messages.push( {
+					date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
+					text: this.newMessage,
+					status: 'sent'
+				});
+				this.newMessage = '';
+			}
+			setTimeout(() => {
+				this.contacts[this.showTextContact].messages.push( {
+					date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
+					text: 'okay',
+					status: 'received'
+				})
+			}, 3000)
 		}	
 		
 	}
