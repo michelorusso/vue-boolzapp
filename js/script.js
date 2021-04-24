@@ -30,22 +30,25 @@ var app = new Vue(
 			name: 'Clara',
 			avatar: 'img/avatar_io.jpg',
 			visible: true,
-			time: '09:37',
+			time: 'Ultimo accesso oggi alle 09:37',
 			messages: [
 				{
 					date: '15/04/2021 15:30:55',
 					text: 'Hai portato a spasso il cane?',
-					status: 'sent'
+					status: 'sent',
+					active: false
 				},
 				{
 					date: '15/04/2021 15:50:00',
 					text: 'Ricordati di dargli da mangiare',
-					status: 'sent'
+					status: 'sent',
+					active: false
 				},
 				{
 					date: '18/01/2021 16:15:22',
 					text: 'Tutto fatto!',
-					status: 'received'
+					status: 'received',
+					active: false
 				}
 			],
 		},
@@ -53,22 +56,25 @@ var app = new Vue(
 			name: 'Paolo',
 			avatar: 'img/avatar_8.jpg',
 			visible: true,
-			time: '19:47',
+			time: 'Ultimo accesso oggi alle 19:47',
 			messages: [
 				{
 					date: '20/04/2021 16:30:00',
 					text: 'Ciao come stai?',
-					status: 'sent'
+					status: 'sent',
+					active: false
 				},
 				{
 					date: '21/04/2021 16:30:55',
 					text: 'Bene grazie! Stasera ci vediamo?',
-					status: 'received'
+					status: 'received',
+					active: false
 				},
 				{
 					date: '22/04/2021 16:35:00',
 					text: 'Mi piacerebbe ma devo andare a fare la spesa.',
-					status: 'sent'
+					status: 'sent',
+					active: false
 				}
 			],
 		},
@@ -76,22 +82,25 @@ var app = new Vue(
 			name: 'Lele',
 			avatar: 'img/avatar_3.jpg',
 			visible: true,
-			time: '15:18',
+			time: 'Ultimo accesso oggi alle 15:18',
 			messages: [
 				{
 					date: '28/03/2020 10:10:40',
 					text: 'La Marianna va in campagna',
-					status: 'received'
+					status: 'received',
+					active: false
 				},
 				{
 					date: '28/03/2020 10:20:10',
 					text: 'Sicuro di non aver sbagliato chat?',
-					status: 'sent'
+					status: 'sent',
+					active: false
 				},
 				{
 					date: '28/03/2020 16:15:22',
 					text: 'Ah scusa!',
-					status: 'received'
+					status: 'received',
+					active: false
 				}
 			],
 		},
@@ -99,17 +108,19 @@ var app = new Vue(
 			name: 'Luisa',
 			avatar: 'img/avatar_6.jpg',
 			visible: true,
-			time: '13:32',
+			time: 'Ultimo accesso oggi alle 13:32',
 			messages: [
 				{
 					date: '19/03/2021 15:30:55',
 					text: 'Lo sai che ha aperto una nuova pizzeria?',
-					status: 'sent'
+					status: 'sent',
+					active: false
 				},
 				{
 					date: '19/03/2021 15:50:00',
 					text: 'Si, ma preferirei andare al cinema',
-					status: 'received'
+					status: 'received',
+					active: false
 				}
 			],
 		},
@@ -122,23 +133,31 @@ var app = new Vue(
 		addNewMessages() {
 			// cliccando il tasto enter se l'input di newMessage è maggiore di 0 allora pusho un nuovo messaggio con status send nell'array messages
 			// resetto l'input newMEssage in modo che dopo l'invio torni ad essere vuota
-			// una voltqa inviato il messaggio parte un SetTimeOut che farà partire un nuovo messaggio con status recivied 
+			
 			if( this.newMessage.length > 0) {
 				this.contacts[this.showTextContact].messages.push( {
 					date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
 					text: this.newMessage,
-					status: 'sent'
+					status: 'sent',
+					active: false
 				});
 				this.newMessage = '';
 			}
+			//  una voltqa inviato il messaggio parte un SetTimeOut che farà partire un nuovo messaggio con status recivied 
 			setTimeout(() => {
 				this.contacts[this.showTextContact].messages.push( {
 					date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
 					text: 'okay',
-					status: 'received'
-				})
-			}, 3000);
+					status: 'received',
+					active: false
+				});
+				this.contacts[this.showTextContact].time = 'online';
+				setTimeout(() => {
+					this.contacts[this.showTextContact].time = 'Ultimo accesso oggi alle ' + dayjs().format('HH:mm');
+				}, 5000);
+			}, 2000);
 		},	
+		// filterContact -> filtro gli elementi di Contacts in base alla lettera o parola che inserisco
 		filterContact() {
 			this.contacts.forEach((element) => {
 				// console.log(element.visible);
@@ -148,6 +167,18 @@ var app = new Vue(
 					element.visible = false;
 				}
 			});
+		},
+		// activeOptMenu -> al click della chevron down si la dropdown diventa visiblie, ricliccandoci diventa nuovamente display:none
+		activeOptMenu(index) {
+			
+			this.contacts[this.showTextContact].messages[index].active = !this.contacts[this.showTextContact].messages[index].active;
+			
+		},
+		// deleteMessage -> al click di 'Cancella Messaggio' , il messaggio cliccato verrà eliminato
+		deleteMessage(index) {
+
+			this.contacts[this.showTextContact].messages.splice(index, 1);
+
 		}
 	}
 

@@ -111,21 +111,26 @@
                         <!-- info-user -->
                         <div class="info-user">
 
+                            <!-- images-user -->
                             <div class="images-user">
                                 <img :src="`${contacts[showTextContact].avatar}`" :alt="contacts[showTextContact].name">
 
                                 <div>
                                     <span>{{ contacts[showTextContact].name }}</span>
-                                    <div class="last-access">Ultimo accesso oggi alle {{ contacts[showTextContact].time }}</div>
+                                    <div class="last-access">{{ contacts[showTextContact].time }}</div>
                                 </div>
                                 
                             </div>
+                            <!-- end images-user -->
 
+                            <!-- icons-user -->
                             <div class="icons-user">
                                 <i class="fas fa-search"></i>
                                 <i class="fas fa-paperclip"></i>
                                 <i class="fas fa-ellipsis-v"></i>
                             </div>
+                            <!-- end icons-user -->
+
                         </div>
                         <!-- end info-user -->
 
@@ -134,12 +139,30 @@
 
                             <ul class="menu">
 
+                                <!-- single-message -->
                                 <li
                                  v-for="(mex, index) in contacts[showTextContact].messages" 
                                  :class="mex.status">
                                     {{ mex.text }}
+                                    
                                     <span class="time-text">{{ mex.date }}</span>
+                                    <span class="option-mex" :class="{'show': mex.active }">
+                                        <i class="fas fa-chevron-down" @click="activeOptMenu(index)"></i>
+
+                                        <div class="dropdown" :class="{'show': mex.active }">
+
+                                            <ul class="menu">
+
+                                                <li>Info Messaggio</li>
+
+                                                <li @click="deleteMessage(index)">Cancella Messaggio</li>
+
+                                            </ul>
+                                        </div>
+
+                                    </span>
                                 </li>
+                                <!-- end single-message -->
 
                             </ul>
                             
@@ -148,11 +171,13 @@
 
                         <!-- input-text -->
                         <div class="input-text">
-                             
+
                             <i class="far fa-smile"></i>
+                            <!-- input text in messages -->
                             <input type="text" placeholder="Scrivi un messaggio"
                              v-model="newMessage"
                              @keyup.enter="addNewMessages">
+                             <!-- end input text in messages -->
                             <i class="fas fa-microphone"></i>
                         </div>
                         <!-- end input-text -->
@@ -170,8 +195,8 @@
     </div>
     
     
-        <!-- DAY.JS -->
-        <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+    <!-- DAY.JS -->
+    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
 
     <!-- JAVASCRIPT -->
     <script type="text/javascript" src="js/script.js"></script>

@@ -224,7 +224,7 @@ h6 a {
     border-radius: 10px;
     position: relative;
     width: 250px;
-    display: block;
+    height: auto;
     margin: 10px 0;
 }
 
@@ -279,4 +279,48 @@ h6 a {
 ::-webkit-scrollbar-thumb:active{
     background-color:grey;
     border: none;
+}
+
+/* MILESTONE 5 (opzionale) */
+.option-mex {
+    display: none;
+}
+
+.option-mex i {
+    cursor: pointer;
+    position: absolute;
+    top: 7px;
+    right: 10px;
+    padding-bottom: 45px;
+    color: rgb(173, 170, 170);
+}
+
+.sent:hover .option-mex, 
+.received:hover .option-mex {
+    display: block;
+    font-size: 13px;
+    
+}
+
+.dropdown {
+    background-color: white;
+    position: absolute;
+    right: 0;
+    top: 45px;
+    z-index: 1;
+    box-shadow: 0 0 12px 1px gray;
+    display: none;
+}
+
+.dropdown li {
+    padding: 12px 10px;
+    color: black;
+    cursor: pointer;
+}
+.dropdown li:last-child {
+    border-top: 1px solid lightgray;
+}
+
+.show {
+    display: block;
 }
