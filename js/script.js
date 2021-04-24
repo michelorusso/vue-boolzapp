@@ -25,6 +25,8 @@ var app = new Vue(
 		showTextContact: 0,
 		newMessage: '',
 		contactFilter: '',
+		notice: 'Attiva',
+		bell: 'fas fa-bell-slash',
 		contacts: [
 			{
 			name: 'Clara',
@@ -155,7 +157,7 @@ var app = new Vue(
 				setTimeout(() => {
 					this.contacts[this.showTextContact].time = 'Ultimo accesso oggi alle ' + dayjs().format('HH:mm');
 				}, 5000);
-			}, 2000);
+			}, 3000);
 		},	
 		// filterContact -> filtro gli elementi di Contacts in base alla lettera o parola che inserisco
 		filterContact() {
@@ -170,7 +172,7 @@ var app = new Vue(
 		},
 		// activeOptMenu -> al click della chevron down si la dropdown diventa visiblie, ricliccandoci diventa nuovamente display:none
 		activeOptMenu(index) {
-			
+
 			this.contacts[this.showTextContact].messages[index].active = !this.contacts[this.showTextContact].messages[index].active;
 			
 		},
@@ -179,6 +181,17 @@ var app = new Vue(
 
 			this.contacts[this.showTextContact].messages.splice(index, 1);
 
+		},
+		// fuori dalle milestone 
+		toggleNotice() {
+			
+			if( this.notice == 'Attiva' ) {
+				this.notice =  'Disattiva';
+				this.bell = 'fas fa-bell';
+			} else if ( this.notice == 'Disattiva') {
+				this.notice = 'Attiva';
+				this.bell = 'fas fa-bell-slash';
+			};
 		}
 	}
 

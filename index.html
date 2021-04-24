@@ -56,12 +56,16 @@
                         <div class="notifications">
 
                             <span class="bell-icon">
-                                <i class="fas fa-bell-slash"></i>
+                                <!-- inizio fuori dalle milestone -->
+                                <i :class="bell"></i>
+                                <!-- fine - fuori dalle milestone -->
                             </span>
 
                             <div>
                                 <h5>Ricevi notifiche di nuovi messaggi</h5>
-                                <h6><a href="#">Attiva notifiche desktop</a></h6>
+                                <!-- inizio fuori dalle milestone -->
+                                <h6><a href="#" @click="toggleNotice">{{ notice + ' notifiche desktop' }}</a></h6>
+                                <!-- fine - fuori dalle milestone -->
                             </div>
                               
                         </div>
@@ -84,7 +88,7 @@
 
                                 <!-- single-contact -->
                                 <li 
-                                v-for="(info, index) in contacts" 
+                                v-for="(info, index) in contacts " 
                                 v-if="info.visible"
                                 class="single-contact "
                                 :class="{ 'courentchat': index == showTextContact}"
@@ -93,8 +97,10 @@
                                     <div class="images-user">
                                         <img :src="info.avatar" :alt="info.name">
                                         <span class="sing-name-contact">{{ info.name }}</span>
+                                        <span class="last-mex" v-if="info.messages.length > 0">{{ info.messages[info.messages.length-1].text.substring(0, 25) }}...</span>
+                                        <span class="last-date">{{ info.messages[info.messages.length-1].date }}</span>
                                     </div>
-
+                                    
                                 </li>
                                 <!-- end single-contact -->
 
@@ -138,7 +144,7 @@
                         <div class="main-message">
 
                             <ul class="menu">
-
+                        
                                 <!-- single-message -->
                                 <li
                                  v-for="(mex, index) in contacts[showTextContact].messages" 
@@ -148,7 +154,7 @@
                                     <span class="time-text">{{ mex.date }}</span>
                                     <span class="option-mex" :class="{'show': mex.active }">
                                         <i class="fas fa-chevron-down" @click="activeOptMenu(index)"></i>
-
+    
                                         <div class="dropdown" :class="{'show': mex.active }">
 
                                             <ul class="menu">
