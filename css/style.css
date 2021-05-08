@@ -291,9 +291,6 @@ h6 a {
 }
 
 /* MILESTONE 5 (opzionale) */
-.option-mex {
-    display: none;
-}
 
 .option-mex i {
     cursor: pointer;
@@ -302,14 +299,20 @@ h6 a {
     right: 10px;
     padding-bottom: 45px;
     color: rgb(173, 170, 170);
+    display: none;
 }
 
 .sent:hover .option-mex, 
 .received:hover .option-mex {
     display: block;
     font-size: 13px;
-    
 }
+
+.sent:hover .option-mex i, 
+.received:hover .option-mex i {
+    display: block;
+}
+
 
 .dropdown {
     background-color: white;
@@ -318,7 +321,6 @@ h6 a {
     top: 45px;
     z-index: 1;
     box-shadow: 0 0 12px 1px gray;
-    display: none;
 }
 
 .dropdown li {
@@ -328,10 +330,6 @@ h6 a {
 }
 .dropdown li:last-child {
     border-top: 1px solid lightgray;
-}
-
-.show {
-    display: block;
 }
 
 .images-user .last-mex {

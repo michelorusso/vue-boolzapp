@@ -57,7 +57,7 @@
 
                             <span class="bell-icon">
                                 <!-- inizio fuori dalle milestone -->
-                                <i :class="bell"></i>
+                                <i :class=" bell"></i>
                                 <!-- fine - fuori dalle milestone -->
                             </span>
 
@@ -98,7 +98,7 @@
                                         <img :src="info.avatar" :alt="info.name">
                                         <span class="sing-name-contact">{{ info.name }}</span>
                                         <span class="last-mex" v-if="info.messages.length > 0">{{ info.messages[info.messages.length-1].text.substring(0, 25) }}...</span>
-                                        <span class="last-date">{{ info.messages[info.messages.length-1].date }}</span>
+                                        <span class="last-date"  v-if="info.messages.length > 0">{{ info.messages[info.messages.length-1].date }}</span>
                                     </div>
                                     
                                 </li>
@@ -152,10 +152,10 @@
                                     {{ mex.text }}
                                     
                                     <span class="time-text">{{ mex.date }}</span>
-                                    <span class="option-mex" :class="{'show': mex.active }">
+                                    <span class="option-mex">
                                         <i class="fas fa-chevron-down" @click="activeOptMenu(index)"></i>
     
-                                        <div class="dropdown" :class="{'show': mex.active }">
+                                        <div v-if="index === activeMessage" class="dropdown">
 
                                             <ul class="menu">
 

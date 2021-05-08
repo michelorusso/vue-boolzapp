@@ -25,6 +25,7 @@ var app = new Vue(
 		showTextContact: 0,
 		newMessage: '',
 		contactFilter: '',
+		activeMessage: false,
 		notice: 'Attiva',
 		bell: 'fas fa-bell-slash',
 		contacts: [
@@ -131,6 +132,7 @@ var app = new Vue(
     methods: {
 		showChat(index) {
 			this.showTextContact = index;
+			this.activeMessage = false;
 		},
 		addNewMessages() {
 			// cliccando il tasto enter se l'input di newMessage è maggiore di 0 allora pusho un nuovo messaggio con status send nell'array messages
@@ -145,17 +147,19 @@ var app = new Vue(
 				});
 				this.newMessage = '';
 			}
+
+			const chatCourent = this.showTextContact;
 			//  una voltqa inviato il messaggio parte un SetTimeOut che farà partire un nuovo messaggio con status recivied 
 			setTimeout(() => {
-				this.contacts[this.showTextContact].messages.push( {
+				this.contacts[chatCourent].messages.push( {
 					date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
 					text: 'okay',
 					status: 'received',
 					active: false
 				});
-				this.contacts[this.showTextContact].time = 'online';
+				this.contacts[chatCourent].time = 'online';
 				setTimeout(() => {
-					this.contacts[this.showTextContact].time = 'Ultimo accesso oggi alle ' + dayjs().format('HH:mm');
+					this.contacts[chatCourent].time = 'Ultimo accesso oggi alle ' + dayjs().format('HH:mm');
 				}, 5000);
 			}, 3000);
 		},	
@@ -173,7 +177,12 @@ var app = new Vue(
 		// activeOptMenu -> al click della chevron down si la dropdown diventa visiblie, ricliccandoci diventa nuovamente display:none
 		activeOptMenu(index) {
 
-			this.contacts[this.showTextContact].messages[index].active = !this.contacts[this.showTextContact].messages[index].active;
+			if( this.activeMessage === index) {
+				this.activeMessage = false;
+			} else {
+				this.activeMessage = index;
+			}
+			
 			
 		},
 		// deleteMessage -> al click di 'Cancella Messaggio' , il messaggio cliccato verrà eliminato
